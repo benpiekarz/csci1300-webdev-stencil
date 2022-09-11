@@ -15,13 +15,14 @@ const apiRequest = async () => {
     }
   });
 
-  // console.log(response);
+  console.log(response);
 
   // Return the response in JSON format
   return response.json();
 }
 
 const updatePage = async () => {
+  console.log("here")
   const gallery = document.getElementById('cs1300-gallery');
 
   // Make API request and get an array of fruit objects
@@ -30,10 +31,25 @@ const updatePage = async () => {
 
   // TODO: Use either `map` and/or `filter` to extract some data from the array of fruit objects
   // For example, find "name of all fruits whose sugar > 15",
+  console.log(fruitsArray)
+  const filteredFruits = fruitsArray.filter(fruit => fruit.nutritions.sugar > 15);
+  console.log(filteredFruits)
 
   // TODO: Create a new HTML element to display your data
+  const fruitDataDescEl = document.createElement("h4")
+  const fruitDataDesc = document.createTextNode("Fruits with over 15 grams of sugar:")
+  fruitDataDescEl.appendChild(fruitDataDesc)
+
+  const fruitSection = document.getElementById("result")
+
+  var ul = document.createElement("ul");
+  
+  fruitSection.append(fruitDataDescEl)
+  for (i = 0; i < filteredFruits.length; i++)
+    fruitSection.append(filteredFruits[i].name, " ")
 
   // TODO: Append your new element to the page
+  fruitSection.append(ul)
 
 }
 
